@@ -1,65 +1,86 @@
 [
     {
         "id": 1,
-        "name": "john",
+        "fullName": "john",
         "mail": "anguru@gmail.com",
         "phone": "050-9382456",
         "address": "ph"
     },
     {
         "id": 2,
-        "name": "mr.T",
+        "fullName": "mr.T",
         "mail": "info@kodo.press",
         "phone": "0500",
         "address": "1"
     },
     {
         "id": 3,
-        "name": "tester",
+        "fullName": "tester",
         "mail": "info@kodo.press",
         "phone": "0508282456",
         "address": "haassis 7, apt 19, Pardes Hanna"
     },
     {
         "id": 4,
-        "name": "tester4",
+        "fullName": "tester4",
         "mail": "tester4",
         "phone": "tester4",
         "address": "tester4"
     },
     {
         "id": 5,
-        "name": "bester4",
+        "fullName": "bester4",
         "mail": "bester4",
         "phone": "bester4",
         "address": "bester4"
     },
     {
         "id": 6,
-        "name": "cccc",
+        "fullName": "cccc",
         "mail": "cccccc",
         "phone": "cc",
         "address": "c"
     },
     {
         "id": 7,
-        "name": "or",
+        "fullName": "or",
         "mail": "grrrrr@fofofof.com",
         "phone": "miao",
         "address": "israel"
     },
     {
         "id": 8,
-        "name": "fdd",
+        "fullName": "fdd",
         "mail": "dfgdfgdfgdf",
         "phone": "dfgdf",
         "address": "dfgdfg"
     },
     {
         "id": 9,
-        "name": "jonathan moguillansky",
+        "fullName": "jonathan moguillansky",
         "mail": "78787878",
         "phone": "3",
         "address": "haasis 7 apt. 19"
+    },
+    {
+        "id": 10,
+        "fullName": "new",
+        "mail": "new.com",
+        "phone": "woof",
+        "address": "NA"
+    },
+    {
+        "id": 11,
+        "fullName": "new",
+        "mail": "new.com",
+        "phone": "0509382456",
+        "address": "NANA"
+    },
+    {
+        "fullName": "new2",
+        "mail": "new2.com",
+        "phone": "0509382456",
+        "address": "NA2NA",
+        "id": 12
     }
 ]
