@@ -1,7 +1,7 @@
 # MASTER
 create a react cheat sheet:
 
-2. BE: CRUD - nodeJS (json-server express joi cors)
+2. BE: CRUD - nodeJS (json-server express joi cors) - V // practice joi validation.
 2. BE: CRUD - nodeJS (mysql express joi cors)
 2. BE: CRUD - nodeJS (mongo express joi cors)
 2. BE: CRUD - nodeJS (json-server + graphql express joi cors)
