@@ -10,12 +10,11 @@ async function getOneLeadAsync(id) {
     return leads;
 }
 async function addOneLeadsAsync(data) {
-console.log(`data`, data)
+    console.log(`data`, data)
     const sql = `INSERT INTO leads (leadName, leadAddress, leadPhone, leadMail) VALUES ('${data.leadAddress}', '${data.leadName}', '${data.leadPhone}', '${data.leadMail}')`;
     const leads = await dal.executeAsync(sql);
     return leads;
 }
-
 
 
 async function deleteOneLeadAsync(id) {
@@ -24,4 +23,15 @@ async function deleteOneLeadAsync(id) {
     return lead;
 }
 
-module.exports = { getAllLeadsAsync, getOneLeadAsync, addOneLeadsAsync, deleteOneLeadAsync  }
+async function putOneLeadsAsync(data) {
+    console.log(`data`, data)
+    // const sql = `UPDATE leads SET leadID = ${data.id}, leadName='${data.leadName}', leadAddress='${data.leadAddress}', leadPhone='${data.leadPhone}', leadMail='${data.leadMail}' WHERE 1`
+    const sql = `UPDATE leads SET leadName='${data.leadName}' WHERE leadID = ${data.id}`
+    const leads = await dal.executeAsync(sql);
+    return leads;
+}
+
+module.exports = {
+    getAllLeadsAsync, getOneLeadAsync, addOneLeadsAsync, deleteOneLeadAsync,
+    putOneLeadsAsync
+}

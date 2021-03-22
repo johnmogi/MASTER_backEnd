@@ -1,6 +1,7 @@
 const express = require("express");
 const leadLogic = require("../logic/business-layer");
 const router = express.Router();
+
 // GET http://localhost:3000/api/leads 
 router.get("/leads", async (request, response) => {
     try {
@@ -43,7 +44,17 @@ router.delete("/lead/:id", async (request, response) => {
     }
 });
 
-
+// PUT http://localhost:3000/api/lead/:id  
+router.put("/lead/:id", async (request, response) => {
+    const id = +request.params.id
+    const data = request.body
+    try {
+        const leads = await leadLogic.putOneLeadsAsync(data);
+        response.json(leads);
+    } catch (err) {
+        response.status(500).send(err.message);
+    }
+});
 
 
 module.exports = router;

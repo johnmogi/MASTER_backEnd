@@ -75,3 +75,8 @@ server.listen(3000, () => console.log("Listening on http://localhost:3000"));
 
 
 
+0. assistance extended - PUT > PATCH :
+https://rapidapi.com/blog/put-vs-patch/
+put overwrites, patch modifies chosen records.
+
+0. 
