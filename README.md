@@ -4,7 +4,7 @@ create a react cheat sheet:
 middleware // apart from mysql security ?
 
 1. BE: CRUD - nodeJS (json-server express joi cors) - V // practice joi validation.
-2. BE: CRUD - nodeJS (mysql express joi cors)
+2. BE: CRUD - nodeJS (mysql express joi cors) // -v time handle + middlware security missing.
 3. BE: CRUD - nodeJS (mongo express joi cors)
 4. BE: CRUD - nodeJS (json-server + graphql express joi cors)
 5. BE: CRUD - nodeJS (postgres + graphql express joi cors)
