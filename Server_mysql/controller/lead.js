@@ -38,7 +38,8 @@ router.delete("/lead/:id", async (request, response) => {
     const id = +request.params.id
     try {
         const lead = await leadLogic.deleteOneLeadAsync(id);
-        response.status(200);
+        response.sendStatus(204);
+
     } catch (err) {
         response.status(500).send(err.message);
     }
@@ -46,15 +47,38 @@ router.delete("/lead/:id", async (request, response) => {
 
 // PUT http://localhost:3000/api/lead/:id  
 router.put("/lead/:id", async (request, response) => {
+    try {
     const id = +request.params.id
     const data = request.body
-    try {
-        const leads = await leadLogic.putOneLeadsAsync(data);
-        response.json(leads);
+    data.leadID = id;
+    const updatedLead = await leadLogic.updateFullLeadAsync(data);
+    if(updatedLead === null) {
+        response.sendStatus(404);
+        return;
+    }
+        response.json(updatedLead);
     } catch (err) {
         response.status(500).send(err.message);
     }
 });
 
-
+// PATCH http://localhost:3000/api/lead/:id  
+router.patch("/lead/:id", async (request, response) => {
+    try {
+        const id = +request.params.id;
+        const lead = request.body;
+        lead.leadID = id;
+        const updatedLead = await leadLogic.updatePartialLeadAsync(lead);
+        
+        if(updatedLead === null) {
+            response.sendStatus(404);
+            return;
+        }
+        
+        response.json(updatedLead);
+    }
+    catch(err) {
+        response.status(500).send(err.message);
+    }
+});
 module.exports = router;

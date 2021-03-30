@@ -8,12 +8,12 @@ leadName
 leadAddress
 leadPhone
 leadMail
-<!-- [leadSources table] // designer relationship: missing index on columns?
-leadName FK
+[leadSources table] // REMEMBER- connect PK TO FK by ID (!)
+leadID FK
 leadDate
 site
 facebook
-manual -->
+manual
 
 0. data/access-layer.js : 
 const mysql = require("mysql");
@@ -79,4 +79,57 @@ server.listen(3000, () => console.log("Listening on http://localhost:3000"));
 https://rapidapi.com/blog/put-vs-patch/
 put overwrites, patch modifies chosen records.
 
-0. 
+0.  put > business layer:
+async function updateFullLeadAsync(data) {
+    const sql = `UPDATE leads SET leadName = '${data.leadName}', leadAddress = '${data.leadAddress}', leadPhone = '${data.leadPhone}', leadMail = '${data.leadMail}' WHERE leadID = ${data.leadID}`;
+    const info = await dal.executeAsync(sql);
+    return info.affectedRows === 0 ? null : data;
+}
+
+0. put > controller :
+// PUT http://localhost:3000/api/lead/:id  
+router.put("/lead/:id", async (request, response) => {
+    try {
+    const id = +request.params.id
+    const data = request.body
+    data.leadID = id;
+    const updatedLead = await leadLogic.updateFullLeadAsync(data);
+    if(updatedLead === null) {
+        response.sendStatus(404);
+        return;
+    }
+        response.json(updatedLead);
+    } catch (err) {
+        response.status(500).send(err.message);
+    }
+});
+
+0. patch > business layer:
+async function updateFullLeadAsync(data) {
+    const sql = `UPDATE leads SET leadName = '${data.leadName}', leadAddress = '${data.leadAddress}', leadPhone = '${data.leadPhone}', leadMail = '${data.leadMail}' WHERE leadID = ${data.leadID}`;
+    const info = await dal.executeAsync(sql);
+    return info.affectedRows === 0 ? null : data;
+}
+
+0. patch > controller :
+// PATCH http://localhost:3000/api/lead/:id  
+router.patch("/lead/:id", async (request, response) => {
+    try {
+        const id = +request.params.id;
+        const lead = request.body;
+        lead.leadID = id;
+        const updatedLead = await leadLogic.updatePartialLeadAsync(lead);
+        
+        if(updatedLead === null) {
+            response.sendStatus(404);
+            return;
+        }
+        
+        response.json(updatedLead);
+    }
+    catch(err) {
+        response.status(500).send(err.message);
+    }
+});
+
+0. DONE (:) // maybe missing some time handeling data but 100%

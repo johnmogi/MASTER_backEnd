@@ -10,7 +10,7 @@ async function getOneLeadAsync(id) {
     return leads;
 }
 async function addOneLeadsAsync(data) {
-    console.log(`data`, data)
+
     const sql = `INSERT INTO leads (leadName, leadAddress, leadPhone, leadMail) VALUES ('${data.leadAddress}', '${data.leadName}', '${data.leadPhone}', '${data.leadMail}')`;
     const leads = await dal.executeAsync(sql);
     return leads;
@@ -23,15 +23,36 @@ async function deleteOneLeadAsync(id) {
     return lead;
 }
 
-async function putOneLeadsAsync(data) {
-    console.log(`data`, data)
-    // const sql = `UPDATE leads SET leadID = ${data.id}, leadName='${data.leadName}', leadAddress='${data.leadAddress}', leadPhone='${data.leadPhone}', leadMail='${data.leadMail}' WHERE 1`
-    const sql = `UPDATE leads SET leadName='${data.leadName}' WHERE leadID = ${data.id}`
-    const leads = await dal.executeAsync(sql);
-    return leads;
+async function updateFullLeadAsync(data) {
+    const sql = `UPDATE leads SET leadName = '${data.leadName}', leadAddress = '${data.leadAddress}', leadPhone = '${data.leadPhone}', leadMail = '${data.leadMail}' WHERE leadID = ${data.leadID}`;
+    const info = await dal.executeAsync(sql);
+    return info.affectedRows === 0 ? null : data;
+}
+
+async function updatePartialLeadAsync(lead) {
+
+    let sql = "UPDATE leads SET ";
+
+    if(lead.leadName) {
+        sql += `leadName = '${lead.leadName}',`
+    }
+    if(lead.leadAddress) {
+        sql += `leadAddress = '${lead.leadAddress}',`
+    }
+    if(lead.leadPhone) {
+        sql += `UnitsInStock = '${lead.leadPhone}',`
+    }
+
+    // Delete last comma: 
+    sql = sql.substr(0, sql.length - 1);
+
+    sql += ` WHERE leadID = ${lead.leadID}`;
+
+    const info = await dal.executeAsync(sql);
+    return info.affectedRows === 0 ? null : lead;
 }
 
 module.exports = {
     getAllLeadsAsync, getOneLeadAsync, addOneLeadsAsync, deleteOneLeadAsync,
-    putOneLeadsAsync
+    updateFullLeadAsync, updatePartialLeadAsync
 }

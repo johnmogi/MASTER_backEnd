@@ -6,7 +6,7 @@ const connection = mysql.createConnection(
     database: "contacts" });
 connection.connect(err => {
     if (err) { console.error(err); return; }
-    console.log("We're connected to leads on MySQL.");
+    console.log("We're connected to contacts on MySQL.");
 });
 function executeAsync(sql) {
     return new Promise((resolve, reject) => {
