@@ -18,12 +18,7 @@ const ItemSchema = mongoose.Schema({
     id: false
 });
 
-ItemSchema.virtual("category", {
-    ref: "Category",
-    localField: "categoryId",
-    foreignField: "_id",
-    justOne: true
-});
+
 const Item = mongoose.model("Item", ItemSchema, "items");
 
 module.exports = Item; 

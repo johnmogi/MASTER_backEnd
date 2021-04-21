@@ -1,3 +1,8 @@
+make sure both mongod and robo3t are installed on local machine.
+mongoose docs: https://mongoosejs.com/docs/index.html
+point of interest: https://github1s.com/Victor-Nikiforov-Web/Final-Project-online-store/blob/master/Server/controllers/shopping-controller.js
+
+
 0. models/Item -
 mkdir models
 cd models
@@ -110,4 +115,5 @@ server.use(express.json());
 server.use('/api/items', itemsController);
 server.listen(3000, () => console.log("Listening on http://localhost:3000"));
 
-0. build db -
+0. export db - 
+

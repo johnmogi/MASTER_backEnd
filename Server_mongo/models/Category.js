@@ -18,6 +18,14 @@ CategorySchema.virtual("items", {
     localField: "_id",
     foreignField: "categoryId"
 });
+
+CategorySchema.virtual("item", {
+    ref: "Item",
+    localField: "itemId",
+    foreignField: "_id",
+    justOne: true
+});
+
 const Category = mongoose.model("Category", CategorySchema, "categories");
 
 module.exports = Category;
